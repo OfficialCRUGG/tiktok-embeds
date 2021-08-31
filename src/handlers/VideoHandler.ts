@@ -41,7 +41,7 @@ export function video(request: FastifyRequest, reply: FastifyReply): void {
       reply.send(getMetaTags(data, request.protocol, request.hostname, params.id));
     });
   } else {
-    console.log(`${request.protocol}://${request.hostname}/${params.id}.mp4`);
-    reply.redirect(`${request.protocol}://${request.hostname}/${params.id}.mp4`);
+    const appUrl = process.env.URL || `${request.protocol}://${request.hostname}`;
+    reply.redirect(`${appUrl}/${params.id}.mp4`);
   }
 }

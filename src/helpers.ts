@@ -11,12 +11,14 @@ export async function returnVideo(videoUrl: string, headers: any) {
 }
 
 export function getMetaTags(data: tiktok.Result, protocol: string, hostname: string, vmId: string): string {
+  const appUrl = process.env.URL || `${protocol}://${hostname}`;
+
   const videoData = data.collector[0];
   const CONSTS = {
     siteTitle: `TikTok (${hostname})`,
     title: `@${videoData.authorMeta.name} on TikTok`,
     description: (!videoData.text || videoData.text === '' ? `@${videoData.authorMeta.name}` : videoData.text.length > 152 ? `${videoData.text.substring(151)}...` : videoData.text).replace('<', '').replace('>', '').replace('"', "'"),
-    url: `${protocol}://${hostname}/${vmId}.mp4`,
+    url: `${appUrl}/${vmId}.mp4`,
     tikTokUrl: `https://vm.tiktok.com/${vmId}`,
   };
 
@@ -36,7 +38,7 @@ export function getMetaTags(data: tiktok.Result, protocol: string, hostname: str
     '<meta property="og:video:type" content="video/mp4" />',
     `<meta property="og:title" content="${CONSTS.title}" />`,
     `<meta property="og:description" content="${CONSTS.description}" />`,
-    `<link rel="alternate" href="${protocol}://${hostname}/oembed.json?description=${encodeURIComponent(CONSTS.description)}&title=${encodeURIComponent(CONSTS.title)}&url=${encodeURIComponent(CONSTS.tikTokUrl)}&siteTitle=${encodeURIComponent(CONSTS.siteTitle)}&siteUrl=${encodeURIComponent(protocol + '://' + hostname)}" type="application/json+oembed" title="@CRUGG on TikTok">`,
+    `<link rel="alternate" href="${appUrl}/oembed.json?description=${encodeURIComponent(CONSTS.description)}&title=${encodeURIComponent(CONSTS.title)}&url=${encodeURIComponent(CONSTS.tikTokUrl)}&siteTitle=${encodeURIComponent(CONSTS.siteTitle)}&siteUrl=${encodeURIComponent(protocol + '://' + hostname)}" type="application/json+oembed" title="@CRUGG on TikTok">`,
   ];
 
   const bottomTags = ['</head>', '</html>'];
