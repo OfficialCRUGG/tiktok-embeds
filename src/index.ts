@@ -26,4 +26,4 @@ server.register(Routes);
 server.register(Missing);
 
 // Listen
-server.listen(process.env.PORT || 6465, '0.0.0.0', () => Log(`Backend running on ${process.env.PORT || 3000}`));
+server.listen(process.env.PORT || 6465, '0.0.0.0', () => Log(`Backend running on ${process.env.PORT || 6465}`));
