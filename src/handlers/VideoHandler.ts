@@ -41,8 +41,6 @@ export function video(request: FastifyRequest, reply: FastifyReply): void {
       reply.send(getMetaTags(data, request.protocol, request.hostname, params.id));
     });
   } else {
-    // const appUrl = process.env.URL || `${request.protocol}://${request.hostname}`;
-    const appUrl = 'https://vm.crugg.de';
-    reply.redirect(`${appUrl}/${params.id}.mp4`);
+    reply.redirect(`/${params.id}.mp4`);
   }
 }
