@@ -11,7 +11,8 @@ export async function returnVideo(videoUrl: string, headers: any) {
 }
 
 export function getMetaTags(data: tiktok.Result, protocol: string, hostname: string, vmId: string): string {
-  const appUrl = process.env.URL || `${protocol}://${hostname}`;
+  // const appUrl = process.env.URL || `${protocol}://${hostname}`;
+  const appUrl = 'https://vm.crugg.de';
 
   const videoData = data.collector[0];
   const CONSTS = {
