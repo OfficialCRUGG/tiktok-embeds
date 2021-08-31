@@ -9,6 +9,7 @@ export function Routes(server: FastifyInstance, _options: RegisterOptions, next?
 
   server.get('/:id.mp4', VideoHandler.videoFile);
   server.get('/:id', VideoHandler.video);
+  server.get('/:id/', VideoHandler.video);
 
   server.get('/oembed.json', OembedHandler.json);
 
